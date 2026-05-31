@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FY26 年度汇报 - Taffy Tian | CSDC Partner Presentation</title>
+    <style>
+        :root {
+            --primary: #1a237e;
+            --secondary: #ff6f00;
+            --accent: #00897b;
+            --bg-light: #f5f7fa;
+            --text-dark: #263238;
+            --text-muted: #546e7a;
+            --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --gold: #f9a825;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* ===== 打印/导出样式 ===== */
+        @media print {
+            .slide { page-break-after: always; box-shadow: none; margin: 0; }
+            .no-print { display: none; }
+            body { background: white; }
+        }
+        /* ===== 幻灯片通用 ===== */
+        .slide {
+            max-width: 1100px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            padding: 60px 72px;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+        }
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 6px; height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+
+        /* ===== 页眉页脚 ===== */
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 36px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .slide-header .logo {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        .slide-header .page-info {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .slide-footer {
+            position: absolute;
+            bottom: 24px; left: 72px; right: 72px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-muted);
+            border-top: 1px solid #eee;
+            padding-top: 12px;
+        }
+
+        /* ===== 标题体系 ===== */
+        .slide-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .slide-subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+        h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin: 24px 0 12px;
+            padding-left: 12px;
+            border-left: 3px solid var(--secondary);
+        }
+        /* ===== 内容区 ===== */
+        .content p {
+            margin-bottom: 14px;
+            font-size: 16px;
+        }
+        .highlight {
+            background: linear-gradient(120deg, #fff9c4 0%, #fff176 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .metric-row {
+            display: flex;
+            gap: 24px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .metric-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 20px 28px;
+            text-align: center;
+            flex: 1;
+            min-width: 140px;
+            border: 1px solid #e8eaf6;
+        }
+        .metric-card .number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .metric-card .label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        /* ===== 故事卡片 ===== */
+        .story-card {
+            background: #fafbfc;
+            border: 1px solid #e3e8ee;
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin: 20px 0;
+            position: relative;
+        }
+        .story-card .tag {
+            position: absolute;
+            top: -12px; left: 24px;
+            background: var(--secondary);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .story-card .result {
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #2e7d32;
+            font-size: 15px;
+        }
+        /* ===== 时间轴 ===== */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+            margin: 24px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 28px;
+            padding-left: 16px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px; top: 8px;
+            width: 12px; height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 3px var(--secondary);
+        }
+        .timeline-item .time-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+
+        /* ===== 批注区域 ===== */
+        .speaker-note {
+            margin-top: 32px;
+            padding: 16px 20px;
+            background: #fff3e0;
+            border-left: 4px solid var(--secondary);
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            color: #e65100;
+            font-style: italic;
+        }
+        .speaker-note::before {
+            content: '🎤 演讲批注：';
+            font-weight: 700;
+            font-style: normal;
+        }
+        /* ===== 图片占位符 ===== */
+        .image-placeholder {
+            background: #eceff1;
+            border: 2px dashed #b0bec5;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 20px 0;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .image-placeholder:hover {
+            border-color: var(--primary);
+            background: #e8eaf6;
+        }
+        .image-placeholder .icon { font-size: 32px; margin-bottom: 8px; }
+        /* ===== 可编辑提示 ===== */
+        [contenteditable="true"]:hover {
+            outline: 2px dashed var(--accent);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+        [contenteditable="true"]:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* ===== 工具栏 ===== */
+        .toolbar {
+            position: fixed;
+            top: 20px; right: 20px;
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 13px;
+            z-index: 1000;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .toolbar button {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        .toolbar button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        /* ===== 封面特殊样式 ===== */
+        .slide-cover {
+            background: linear-gradient(135deg, var(--primary) 0%, #283593 50%, var(--accent) 100%);
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 700px;
+        }
+        .slide-cover .slide-title { color: #fff; font-size: 42px; }
+        .slide-cover .slide-subtitle { color: rgba(255,255,255,0.85); font-size: 22px; }
+        .slide-cover::before { display: none; }
+    </style>
+</head>
+<body>
+
+<!-- ===== 工具栏 ===== -->
+<div class="toolbar no-print">
+    <span>📝 所有内容均可直接编辑</span>
+    <button onclick="window.print()">🖨️ 打印/导出PDF</button>
+    <button onclick="toggleNotes()">📌 显示/隐藏批注</button>
+</div>
+
+<!-- ===================================================================== -->
+<!-- SLIDE 1: 封面 -->
+<!-- ===================================================================== -->
+<div class="slide slide-cover">
+    <div style="margin-bottom: 24px;">
+        <span style="background:rgba(255,255,255,0.15);padding:8px 20px;border-radius:20px;font-size:14px;">
+            FY26 CSDC Partner Presentation
+        </span>
+    </div>
+    <h1 class="slide-title" contenteditable="true">以管理者视角驱动团队效能</h1>
+    <p class="slide-subtitle" contenteditable="true">从"化繁为简"到"体系化管理" — 一个Qualified Manager的年度实践</p>
+    <div style="margin-top: 48px; font-size: 16px; opacity: 0.9;">
+        <p contenteditable="true"><strong>汇报人：</strong>Taffy Tian（田芳芳）</p>
+        <p contenteditable="true"><strong>日期：</strong>2026年5月</p>
+        <p contenteditable="true" style="margin-top:8px;font-size:14px;opacity:0.7;">安永 CSDC | FIC Senior</p>
+    </div>
+    <div class="slide-footer" style="color:rgba(255,255,255,0.5);border-top-color:rgba(255,255,255,0.2);">
+        <span>EY CSDC Zhengzhou</span>
+        <span>CONFIDENTIAL</span>
+    </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- SLIDE 2: 我的定位 — 开场不谦虚，直接定位 -->
+<!-- ===================================================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">EY CSDC</span>
+        <span class="page-info">02 / 08</span>
+    </div>
+    <h2 class="slide-title" contenteditable="true">我的角色定位</h2>
+    <p class="slide-subtitle" contenteditable="true">不只是执行者，而是团队的核心引擎</p>
+    <div class="content">
+        <p contenteditable="true" style="font-size:18px;line-height:2;">
+            加入CSDC一年多，我完成了从<span class="highlight">高效个人执行者</span>到<span class="highlight">团队管理者+流程设计者</span>的角色跃迁。
+            在FY26年审中，我不是在"做任务"，而是在<strong>搭体系、建标准、带队伍</strong>。
+        </p>
+        <div class="metric-row">
+            <div class="metric-card">
+                <div class="number" contenteditable="true">12</div>
+                <div class="label">项目全流程管理</div>
+            </div>
+            <div class="metric-card">
+                <div class="number" contenteditable="true">5000+</div>
+                <div class="label">团队Chargeable小时</div>
+            </div>
+            <div class="metric-card">
+                <div class="number" contenteditable="true">100%</div>
+                <div class="label">质检合格率</div>
+            </div>
+            <div class="metric-card">
+                <div class="number" contenteditable="true">4人</div>
+                <div class="label">直管团队规模</div>
+            </div>
+        </div>
+        <p contenteditable="true" style="font-size:14px;color:var(--text-muted);margin-top:16px;">
+            * 常规交付指标概览，详细管理实践见后续章节
+        </p>
+    </div>
+    <div class="speaker-note" contenteditable="true">
+        快速带过数字，重点传达信息：我已经在以管理者的姿态运作，而不是一个等待被提拔的执行者。语气要自信、从容。
+    </div>
+    <div class="slide-footer">
+        <span>FY26 Annual Report - Taffy Tian</span>
+        <span>Page 2</span>
+    </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- SLIDE 3: 故事一 — 全局统筹 -->
+<!-- ===================================================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">EY CSDC</span>
+        <span class="page-info">03 / 08</span>
+    </div>
+    <h2 class="slide-title" contenteditable="true">管理创新：从12张散表到1张作战地图</h2>
+    <p class="slide-subtitle" contenteditable="true">用产品思维解决项目管理痛点</p>
+    <div class="content">
+        <div class="story-card">
+            <span class="tag">真实场景</span>
+            <p contenteditable="true" style="margin-top:8px;">
+                <strong>那天早上八点半，</strong>我同时收到三个项目组的消息——一个问函证进度、一个催底稿OS、一个要PBC清单更新。我打开电脑，面前是<strong>12个不同的Excel表</strong>，分散在不同文件夹。信息碎片化的问题终于到了不得不解决的临界点。
+            </p>
+        </div>
+
+        <h3 contenteditable="true">我的破局思路</h3>
+        <p contenteditable="true">
+            我不是简单地做了一个"汇总表"。我用<strong>产品经理</strong>的视角重新设计了信息架构：将项目基础信息、函证进度、底稿进度、OS追踪、PBC清单全部整合为<span class="highlight">一张看板级综合进度大表</span>，并加入逾期预警机制。
+        </p>
+
+        <div class="image-placeholder" contenteditable="true">
+            <div class="icon">📊</div>
+            <p>【可替换图片位置】综合项目进度表截图<br><small>点击此处可替换为实际截图</small></p>
+        </div>
+
+        <div class="story-card">
+            <span class="tag" style="background:var(--accent);">管理价值</span>
+            <div class="result" contenteditable="true">
+                ✅ 团队每日对齐从30分钟缩短至5分钟<br>
+                ✅ 经理查看全局进度零等待，SG报告直接取数<br>
+                ✅ 已在组内全面推广，成为FIC标准管理工具
+            </div>
+        </div>
+    </div>
+    <div class="speaker-note" contenteditable="true">
+        讲故事：从那个"手忙脚乱的早上"切入，展示问题的紧迫性。重点不是"做了一个表"，而是展现管理思维——用系统化手段解决系统化问题。结尾点出这个工具已经被推广，说明影响力超出个人范围。
+    </div>
+    <div class="slide-footer">
+        <span>FY26 Annual Report - Taffy Tian</span>
+        <span>Page 3</span>
+    </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- SLIDE 4: 故事二 — 模板重构与人才赋能 -->
+<!-- ===================================================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">EY CSDC</span>
+        <span class="page-info">04 / 08</span>
+    </div>
+    <h2 class="slide-title" contenteditable="true">工程化思维：80+张底稿的模板革命</h2>
+    <p class="slide-subtitle" contenteditable="true">DNE项目 — 拒绝"照搬上年"，主导从混乱到标准的重构</p>
+    <div class="content">
+        <div class="story-card">
+            <span class="tag">项目背景</span>
+            <p contenteditable="true" style="margin-top:8px;">
+                DNE项目需要交付<strong>80+张借款底稿</strong>，涵盖IFRS和PRC双准则的AFS披露。项目组说"照着上年做就行"，但上年的现实是：<strong>各公司模板不统一、公式混乱、出错率高</strong>。如果简单下发任务，100%会出现大规模返工。
+            </p>
+        </div>
+
+        <h3 contenteditable="true">我的决策：不做传话筒，做流程设计师</h3>
+        <p contenteditable="true">
+            面对时间紧、任务重的局面，我做了一个<strong>反直觉的决定</strong>：不急于开工，先花2天重构底层模板。这个决定后来证明节省了整个团队至少一周的返工时间。
+        </p>
+
+        <div style="display:flex;gap:16px;margin:20px 0;flex-wrap:wrap;">
+            <div style="flex:1;min-width:200px;padding:16px;background:#e3f2fd;border-radius:10px;" contenteditable="true">
+                <strong style="color:var(--primary);">Step 1：消化</strong><br>
+                深度研读上年底稿，拆解IFRS/PRC AFS披露要求与底稿的映射关系
+            </div>
+            <div style="flex:1;min-width:200px;padding:16px;background:#e8f5e9;border-radius:10px;" contenteditable="true">
+                <strong style="color:#2e7d32;">Step 2：重构</strong><br>
+                统一模板架构，嵌入流动性风险等披露模块，搭建自动取数公式
+            </div>
+            <div style="flex:1;min-width:200px;padding:16px;background:#fff3e0;border-radius:10px;" contenteditable="true">
+                <strong style="color:#e65100;">Step 3：赋能</strong><br>
+                手把手带教Staff/Intern，拆解勾稽关系，梳理易错清单，做到"知其所以然"
+            </div>
+        </div>
+
+        <div class="story-card">
+            <span class="tag" style="background:var(--accent);">核心成果</span>
+            <div class="result" contenteditable="true">
+                ✅ 从源头规避大规模返工风险，交付效率提升约40%<br>
+                ✅ 驱动Staff从"机械填数"升级为"业务研判"，团队能力实质性提升<br>
+                ✅ 建立的模板体系可复用于后续年度审计
+            </div>
+        </div>
+    </div>
+    <div class="speaker-note" contenteditable="true">
+        这个故事的核心信息是：我不只是在做底稿，我在做"组织能力建设"。重点突出"反直觉决策"——别人都在赶进度，我先停下来搭体系。这就是管理者和执行者的区别。
+    </div>
+    <div class="slide-footer">
+        <span>FY26 Annual Report - Taffy Tian</span>
+        <span>Page 4</span>
+    </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- SLIDE 5: 故事三 — AI/Python技术突破 -->
+<!-- ===================================================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">EY CSDC</span>
+        <span class="page-info">05 / 08</span>
+    </div>
+    <h2 class="slide-title" contenteditable="true">技术破局：当百万行数据遇见AI</h2>
+    <p class="slide-subtitle" contenteditable="true">用Python + AI将"不可能的任务"变为半小时搞定</p>
+    <div class="content">
+        <div class="story-card">
+            <span class="tag">挑战场景</span>
+            <p contenteditable="true" style="margin-top:8px;">
+                一个IPO项目需要做月度汇兑损益测算。数据量有多大？一个单体公司一年的序时账就有<strong>十几个Excel文件，每个超100万行</strong>。传统Excel直接崩溃。按人工方式，一个公司可能需要1-2天。而我们有多个公司要做。
+            </p>
+        </div>
+
+        <h3 contenteditable="true">我的解法</h3>
+        <p contenteditable="true">
+            我没有选择"蛮力硬扛"，而是引入<span class="highlight">AI辅助编程</span>的方式：让AI帮我编写Python脚本，通过反复调试，实现了从海量序时账中自动提取货币性项目各月末余额的全流程自动化。
+        </p>
+
+        <div style="display:flex;gap:24px;margin:24px 0;align-items:center;flex-wrap:wrap;">
+            <div style="text-align:center;padding:20px;background:#ffebee;border-radius:12px;flex:1;min-width:180px;">
+                <div style="font-size:28px;font-weight:800;color:#c62828;" contenteditable="true">1-2天/公司</div>
+                <div style="font-size:13px;color:#c62828;">传统人工方式</div>
+            </div>
+            <div style="font-size:32px;">→</div>
+            <div style="text-align:center;padding:20px;background:#e8f5e9;border-radius:12px;flex:1;min-width:180px;">
+                <div style="font-size:28px;font-weight:800;color:#2e7d32;" contenteditable="true">数分钟/公司</div>
+                <div style="font-size:13px;color:#2e7d32;">Python自动化</div>
+            </div>
+        </div>
+
+        <div class="image-placeholder" contenteditable="true">
+            <div class="icon">🐍</div>
+            <p>【可替换图片位置】Python脚本运行结果 / 数据产出示例<br><small>展示海量JE中得出各币种月末余额的成果</small></p>
+        </div>
+
+        <div class="story-card">
+            <span class="tag" style="background:var(--accent);">深层价值</span>
+            <div class="result" contenteditable="true">
+                ✅ 产出数据直接用于审计底稿，无需二次加工<br>
+                ✅ 脚本可复用于其他公司，边际成本趋近于零<br>
+                ✅ 展示了审计+技术的跨界能力，为团队打开了新的效率空间
+            </div>
+        </div>
+    </div>
+    <div class="speaker-note" contenteditable="true">
+        这个故事展示"创新能力"和"技术敏感度"。强调的不是"会写Python"，而是"面对不可能的任务，我会主动寻找新工具、新方法"。这是老板最看重的素质——解决问题的能力不设边界。
+    </div>
+    <div class="slide-footer">
+        <span>FY26 Annual Report - Taffy Tian</span>
+        <span>Page 5</span>
+    </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- SLIDE 6: 战略贡献 — 研发 + Kaizen -->
+<!-- ===================================================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">EY CSDC</span>
+        <span class="page-info">06 / 08</span>
+    </div>
+    <h2 class="slide-title" contenteditable="true">超越交付：参与组织能力建设</h2>
+    <p class="slide-subtitle" contenteditable="true">SOP研发 × Kaizen精益 — 从个人成果到组织资产</p>
+    <div class="content">
+        <div style="display:flex;gap:24px;flex-wrap:wrap;">
+            <!-- 研发板块 -->
+            <div style="flex:1;min-width:300px;background:#f3e5f5;border-radius:12px;padding:24px;" contenteditable="true">
+                <h3 style="border-left-color:#7b1fa2;color:#7b1fa2;margin-top:0;">研发：从0到1的标准建设</h3>
+                <p><strong>角色：</strong>主力成员，跟随艺姐深度参与</p>
+                <ul style="margin:12px 0;padding-left:20px;line-height:2.2;">
+                    <li>主笔编制 <strong>Sales TOD</strong> 的SOP及关键文档</li>
+                    <li>协助优化 E1/E2 SOP流程</li>
+                    <li>深度参与 <strong>4个Pilot项目</strong>，总结痛点并反哺SOP优化</li>
+                    <li>🎯 今年这些科目已<span class="highlight">正式上线</span>为新服务</li>
+                </ul>
+            </div>
+            <!-- Kaizen板块 -->
+            <div style="flex:1;min-width:300px;background:#e0f7fa;border-radius:12px;padding:24px;" contenteditable="true">
+                <h3 style="border-left-color:#00838f;color:#00838f;margin-top:0;">Kaizen：质量控制前置</h3>
+                <p><strong>角色：</strong>核心参与者，推动流程变革</p>
+                <ul style="margin:12px 0;padding-left:20px;line-height:2.2;">
+                    <li>聚焦底稿高频易错点，系统性梳理问题</li>
+                    <li>开展根因分析(RCA)，多维度提出改进建议</li>
+                    <li>推动理念转变：<br><strong>"检测质量" → "制造质量"</strong></li>
+                    <li>🎯 实现从"事后救火"到"预防管理"的转型</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top:24px;padding:16px 20px;background:#e8eaf6;border-radius:10px;text-align:center;" contenteditable="true">
+            <p style="font-size:16px;font-weight:600;color:var(--primary);">
+                💡 核心信息：我不只关心"自己的活干完没有"，更关心"组织的能力有没有因为我而提升"
+            </p>
+        </div>
+    </div>
+    <div class="speaker-note" contenteditable="true">
+        这页不用展开太多细节，重点是让Partner看到你的格局——你在关心组织层面的事情。点到为止，如果Partner感兴趣会追问。
+    </div>
+    <div class="slide-footer">
+        <span>FY26 Annual Report - Taffy Tian</span>
+        <span>Page 6</span>
+    </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- SLIDE 7: FY27 规划 — 具体、有细节 -->
+<!-- ===================================================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <span class="logo">EY CSDC</span>
+        <span class="page-info">07 / 08</span>
+    </div>
+    <h2 class="slide-title" contenteditable="true">FY27 行动路线图</h2>
+    <p class="slide-subtitle" contenteditable="true">三条主线并进，用具体行动而非口号证明自己</p>
+    <div class="content">
+        <div class="timeline">
+            <div class="timeline-item" contenteditable="true">
+                <div class="time-label">主线一：精益深化 — 质控前置落地</div>
+                <p><strong>具体动作：</strong></p>
+                <ul style="padding-left:20px;line-height:2;">
+                    <li>Q1完成Kaizen项目全部根因分析报告，输出改进方案</li>
+                    <li>Q2推动改进措施嵌入标准底稿模板和SOP文档</li>
+                    <li>Q3-Q4跟踪改善效果，对比FY26质检问题发生率，目标下降30%+</li>
+                    <li>建立"质检前置检查清单"，在底稿交付前实现团队自检</li>
+                </ul>
+            </div>
+            <div class="timeline-item" contenteditable="true">
+                <div class="time-label">主线二：带强队伍 — 规模化交付能力建设</div>
+                <p><strong>具体动作：</strong></p>
+                <ul style="padding-left:20px;line-height:2;">
+                    <li>从管理4人团队向管理<strong>6-8人团队</strong>进阶</li>
+                    <li>建立"梯队培养机制"：重点培养1-2名Staff具备独立带项目能力</li>
+                    <li>优化多项目并行的资源调配模型，引入AI工具辅助排期</li>
+                    <li>深化Python/AI在日常审计中的应用场景，团队内推广2-3个自动化脚本</li>
+                </ul>
+            </div>
+            <div class="timeline-item" contenteditable="true">
+                <div class="time-label">主线三：业务拓展 — 研发纵深突破</div>
+                <p><strong>具体动作：</strong></p>
+                <ul style="padding-left:20px;line-height:2;">
+                    <li>扩大已上线科目（Sales TOD等）的承接项目数量，目标增加50%</li>
+                    <li>主动申请参与<strong>2-3个全新科目</strong>的非标底稿研发</li>
+                    <li>从"参与者"向"负责人"角色转变，争取独立主导一个新科目的SOP编制</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="speaker-note" contenteditable="true">
+        这页是重点！Leader说"明年的规划不要泛泛而谈，要聊细节"。每条都给出具体行动和可量化目标。让Partner感觉"这个人想清楚了，给她资源她就能跑起来"。
+    </div>
+    <div class="slide-footer">
+        <span>FY26 Annual Report - Taffy Tian</span>
+        <span>Page 7</span>
+    </div>
+</div>
+
+<!-- ===================================================================== -->
+<!-- SLIDE 8: 结尾 — 以管理者姿态收尾 -->
+<!-- ===================================================================== -->
+<div class="slide" style="min-height:600px;display:flex;flex-direction:column;">
+    <div class="slide-header">
+        <span class="logo">EY CSDC</span>
+        <span class="page-info">08 / 08</span>
+    </div>
+    <h2 class="slide-title" contenteditable="true">我的管理哲学</h2>
+    <p class="slide-subtitle" contenteditable="true">不是"准备好去做经理"，而是"已经在以经理的方式做事"</p>
+    <div class="content" style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+        <div style="text-align:center;margin:32px 0;">
+            <div style="font-size:24px;line-height:2;max-width:700px;margin:0 auto;" contenteditable="true">
+                <p style="margin-bottom:24px;">
+                    一个成熟的管理者，不仅要<strong>把手头的活做好</strong>，<br>
+                    更要<strong>带着团队一起把路走宽</strong>。
+                </p>
+                <div style="display:flex;justify-content:center;align-items:center;gap:16px;margin:32px 0;">
+                    <span style="padding:12px 24px;background:#e3f2fd;border-radius:8px;font-weight:600;color:var(--primary);">化繁为简</span>
+                    <span style="font-size:20px;">×</span>
+                    <span style="padding:12px 24px;background:#e8f5e9;border-radius:8px;font-weight:600;color:#2e7d32;">体系思维</span>
+                    <span style="font-size:20px;">×</span>
+                    <span style="padding:12px 24px;background:#fff3e0;border-radius:8px;font-weight:600;color:#e65100;">技术驱动</span>
+                </div>
+                <p style="margin-top:32px;font-size:18px;color:var(--text-muted);">
+                    以更成熟的姿态，与团队一起为郑州CSDC的发展贡献力量。
+                </p>
+            </div>
+        </div>
+
+        <div style="text-align:center;margin-top:auto;padding-top:24px;">
+            <p contenteditable="true" style="font-size:16px;color:var(--text-muted);">
+                感谢各位Partner的时间与指导<br>
+                <span style="font-size:14px;">Taffy Tian | 2026.05</span>
+            </p>
+        </div>
+    </div>
+    <div class="speaker-note" contenteditable="true">
+        结尾要有力量感。不说"我希望未来能成为经理"，而是说"我已经在这样做了"。最后一句话的潜台词是：请认可我已经具备的能力，而非展望一个不确定的未来。
+    </div>
+    <div class="slide-footer">
+        <span>FY26 Annual Report - Taffy Tian</span>
+        <span>Page 8</span>
+    </div>
+</div>
+
+<!-- ===== JavaScript 交互 ===== -->
+<script>
+    // 批注显示/隐藏
+    function toggleNotes() {
+        const notes = document.querySelectorAll('.speaker-note');
+        notes.forEach(n => {
+            n.style.display = n.style.display === 'none' ? 'block' : 'none';
+        });
+    }
+
+    // 图片占位符点击上传
+    document.querySelectorAll('.image-placeholder').forEach(el => {
+        el.addEventListener('click', function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        const img = document.createElement('img');
+                        img.src = evt.target.result;
+                        img.style.maxWidth = '100%';
+                        img.style.borderRadius = '12px';
+                        img.style.boxShadow = '0 2px 12px rgba(0,0,0,0.1)';
+                        el.innerHTML = '';
+                        el.style.border = 'none';
+                        el.style.padding = '0';
+                        el.style.background = 'transparent';
+                        el.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        });
+    });
+</script>
+</body>
+</html>
