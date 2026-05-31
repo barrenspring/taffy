@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FY26 年度述职报告 — Taffy Tian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --bg-card: #141414;
+  --bg-card-hover: #1a1a1a;
+  --gold: #d4b863;
+  --gold-dim: rgba(212,184,99,.15);
+  --gold-border: rgba(212,184,99,.3);
+  --text: #e8e6e1;
+  --text-muted: #9a9590;
+  --text-dim: #6b6560;
+  --serif: 'Noto Serif SC', serif;
+  --sans: 'Noto Sans SC', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* ===== 导航栏 ===== */
+nav {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 100;
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,184,99,.12);
+}
+nav .nav-inner {
+  max-width: 1200px; margin:0 auto;
+  padding: 16px 32px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+nav .brand {
+  font-family: var(--serif);
+  font-size: 14px; font-weight: 600;
+  color: var(--gold);
+  letter-spacing: .05em;
+}
+nav .links { display:flex; gap:28px; }
+nav .links a {
+  font-size: 13px; font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color .2s;
+  letter-spacing: .02em;
+}
+nav .links a:hover { color: var(--gold); }
+
+/* ===== 通用容器 ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+section {
+  padding: 120px 0 80px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+section:last-of-type { border-bottom: none; }
+
+/* ===== 标题体系 ===== */
+.section-label {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.gold { color: var(--gold); }
+
+/* ===== Hero ===== */
+#hero {
+  padding-top: 160px;
+  padding-bottom: 100px;
+  min-height: 80vh;
+  display: flex; align-items: center;
+}
+#hero .subtitle {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+#hero .meta-info {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  font-size: 13px; color: var(--text-dim);
+}
+#hero .meta-info span { display:flex; align-items:center; gap:6px; }
+
+/* ===== KPI 卡片行 ===== */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 40px 0;
+}
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,.06);
+  padding: 28px 24px;
+  transition: border-color .3s;
+}
+.kpi-card:hover { border-color: var(--gold-border); }
+.kpi-card .num {
+  font-family: var(--serif);
+  font-size: 42px; font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.kpi-card .label {
+  font-size: 13px; color: var(--text-muted);
+}
+
+/* ===== 故事卡片 ===== */
+.story-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,.06);
+  padding: 40px;
+  margin-bottom: 32px;
+  transition: border-color .3s;
+}
+.story-card:hover { border-color: var(--gold-border); }
+.story-card .tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--gold-dim);
+  padding: 4px 12px;
+  margin-bottom: 16px;
+}
+.story-card p {
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.story-card .result {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: rgba(212,184,99,.06);
+  border-left: 3px solid var(--gold);
+  font-size: 14px;
+  color: var(--text);
+  line-height: 2;
+}
+
+/* ===== 三列布局 ===== */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+.pillar-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,.06);
+  padding: 32px 28px;
+  transition: border-color .3s;
+}
+.pillar-card:hover { border-color: var(--gold-border); }
+.pillar-card .num {
+  font-family: var(--serif);
+  font-size: 48px; font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 16px;
+  opacity: .4;
+}
+.pillar-card h3 { margin-bottom: 12px; }
+.pillar-card ul {
+  list-style: none;
+  padding: 0;
+}
+.pillar-card ul li {
+  font-size: 14px;
+  color: var(--text-muted);
+  padding: 6px 0;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+}
+.pillar-card ul li::before {
+  content: '';
+  position: absolute; left:0; top:13px;
+  width: 6px; height: 1px;
+  background: var(--gold);
+}
+
+/* ===== 对比区块 ===== */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 32px 0;
+}
+
+/* ===== 页脚 ===== */
+footer {
+  padding: 60px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+footer .sign {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 900px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: 1fr; }
+  .compare-grid { grid-template-columns: 1fr; }
+  nav .links { gap: 16px; }
+}
+@media (max-width: 600px) {
+  .kpi-row { grid-template-columns: 1fr; }
+  .container { padding: 0 20px; }
+  nav .nav-inner { padding: 12px 20px; }
+  nav .links a { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 导航栏 ===== -->
+<nav>
+  <div class="nav-inner">
+    <span class="brand">TAFFY TIAN · FY26</span>
+    <div class="links">
+      <a href="#role">角色定位</a>
+      <a href="#stories">化繁为简</a>
+      <a href="#beyond">超越交付</a>
+      <a href="#fy27">FY27 规划</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO 区 ===== -->
+<section id="hero">
+  <div class="container">
+    <div class="section-label">FY26 Annual Report</div>
+    <h1>以管理者视角<br/>驱动团队<span class="gold">效能</span></h1>
+    <p class="subtitle">从"化繁为简"到"体系化管理" — 不是准备好去做经理，而是已经在以经理的方式做事。</p>
+    <div class="meta-info">
+      <span>田芳芳 Taffy Tian</span>
+      <span>EY CSDC · 郑州</span>
+      <span>2026.05</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 角色定位 ===== -->
+<section id="role">
+  <div class="container">
+    <div class="section-label">01 — 角色定位</div>
+    <h2>不只是执行者，而是团队的<span class="gold">核心引擎</span></h2>
+    <p style="color:var(--text-muted);max-width:700px;margin-bottom:32px;">加入 CSDC 一年多，完成了从高效个人执行者到团队管理者 + 流程设计者的角色跃迁。在 FY26 年审中，不是在"做任务"，而是在搭体系、建标准、带队伍。</p>
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="num">12</div>
+        <div class="label">项目全流程管理</div>
+      </div>
+      <div class="kpi-card">
+        <div class="num">5000+</div>
+        <div class="label">团队 Chargeable 小时</div>
+      </div>
+      <div class="kpi-card">
+        <div class="num">100%</div>
+        <div class="label">质检合格率</div>
+      </div>
+      <div class="kpi-card">
+        <div class="num">4人</div>
+        <div class="label">直管团队规模</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 化繁为简 ===== -->
+<section id="stories">
+  <div class="container">
+    <div class="section-label">02 — 化繁为简</div>
+    <h2>三个核心故事</h2>
+    <p style="color:var(--text-muted);max-width:700px;margin-bottom:40px;">经理 Ryan 对我的评价是"能把复杂问题做简单"。以下三个真实业务场景，展示了我是如何将这种能力系统化运用的。</p>
+
+    <!-- 故事一 -->
+    <div class="story-card">
+      <span class="tag">管理创新</span>
+      <h3>从 12 张散表到 1 张作战地图</h3>
+      <p>年审期间多项目并行，信息碎片化，极易引发管理"暴雷"。那天早上我同时收到三个项目组的消息——一个问函证进度、一个催底稿 OS、一个要 PBC 清单更新。面前是 12 个不同的 Excel 表，分散在不同文件夹。</p>
+      <p><strong style="color:var(--text)">我的解法：</strong>用产品思维重新设计信息架构，将项目基础信息、函证进度、底稿进度、OS 追踪、PBC 清单全部整合为一张看板级综合进度大表，并加入逾期预警机制。</p>
+      <div class="result">
+        ✓ 团队每日对齐从 30 分钟缩短至 5 分钟<br/>
+        ✓ 经理查看全局进度零等待，SG 报告直接取数<br/>
+        ✓ 已在组内全面推广，成为 FIC 标准管理工具
+      </div>
+    </div>
+
+    <!-- 故事二 -->
+    <div class="story-card">
+      <span class="tag">工程化思维</span>
+      <h3>80+ 张底稿的模板革命</h3>
+      <p>DNE 项目需要交付 80+ 张借款底稿，涵盖 IFRS 和 PRC 双准则的 AFS 披露。项目组说"照着上年做就行"，但上年现实是：各公司模板不统一、公式混乱、出错率高。如果简单下发任务，100% 会出现大规模返工。</p>
+      <p><strong style="color:var(--text)">我的决策：</strong>不急于开工，先花 2 天重构底层模板。推行"消化 → 重构 → 人才赋能"闭环管理模式——统一标准化模板、搭建公式实现自动取数、手把手带教 Staff 和 Intern 掌握底稿核心点。</p>
+      <div class="result">
+        ✓ 从源头规避大规模返工风险，交付效率提升约 40%<br/>
+        ✓ 驱动 Staff 从"机械填数"升级为"业务研判"<br/>
+        ✓ 模板体系可复用于后续年度审计
+      </div>
+    </div>
+
+    <!-- 故事三 -->
+    <div class="story-card">
+      <span class="tag">技术破局</span>
+      <h3>当百万行数据遇见 AI</h3>
+      <p>一个 IPO 项目需要做月度汇兑损益测算。一个单体公司一年的序时账就有十几个 Excel 文件，每个超 100 万行。传统 Excel 直接崩溃，按人工方式一个公司可能需要 1-2 天。</p>
+      <p><strong style="color:var(--text)">我的解法：</strong>引入 AI 辅助编写 Python 脚本，实现数据清洗、筛选与处理的全流程自动化。反复调试后，将每家公司的处理时间从 1-2 天压缩至数分钟，产出数据直接用于审计底稿。</p>
+      <div class="result">
+        ✓ 处理时间：1-2 天/公司 → 数分钟/公司<br/>
+        ✓ 产出数据直接用于底稿，无需二次加工<br/>
+        ✓ 脚本可复用于其他公司，边际成本趋近于零
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 超越交付 ===== -->
+<section id="beyond">
+  <div class="container">
+    <div class="section-label">03 — 超越交付</div>
+    <h2>参与<span class="gold">组织能力</span>建设</h2>
+    <p style="color:var(--text-muted);max-width:700px;margin-bottom:40px;">不只关心"自己的活干完没有"，更关心"组织的能力有没有因为我而提升"。</p>
+
+    <div class="compare-grid">
+      <div class="story-card" style="margin-bottom:0">
+        <span class="tag">SOP 研发</span>
+        <h3>从 0 到 1 的标准建设</h3>
+        <p>作为主力成员编制 Sales TOD 的 SOP 及关键文档，协助团队优化 E1/E2 的 SOP。深度参与 4 个 Pilot 项目，总结痛点并反哺 SOP 优化。</p>
+        <p style="color:var(--gold);font-weight:500;margin-top:16px;">→ 今年这些科目已正式上线为新服务</p>
+      </div>
+      <div class="story-card" style="margin-bottom:0">
+        <span class="tag">Kaizen 精益</span>
+        <h3>质量控制前置</h3>
+        <p>核心参与质检 Kaizen 改进项目，聚焦底稿高频易错点。开展根因分析（RCA），从标准底稿、SOP、项目管理、培训拉通等多方面提出改进建议。</p>
+        <p style="color:var(--gold);font-weight:500;margin-top:16px;">→ 从"事后救火"到"预防管理"的转型</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FY27 规划 ===== -->
+<section id="fy27">
+  <div class="container">
+    <div class="section-label">04 — FY27 行动路线图</div>
+    <h2>三条主线并进，<span class="gold">用行动证明自己</span></h2>
+    <p style="color:var(--text-muted);max-width:700px;margin-bottom:40px;">不是泛泛而谈的愿景，而是有具体时间节点、可量化目标的行动计划。</p>
+
+    <div class="grid-3">
+      <div class="pillar-card">
+        <div class="num">01</div>
+        <h3>精益深化 · 质控前置</h3>
+        <ul>
+          <li>Q1 完成 Kaizen 全部根因分析报告</li>
+          <li>Q2 改进措施嵌入标准底稿和 SOP</li>
+          <li>Q3-Q4 跟踪效果，目标：问题下降 30%+</li>
+          <li>建立"质检前置检查清单"，团队自检</li>
+        </ul>
+      </div>
+      <div class="pillar-card">
+        <div class="num">02</div>
+        <h3>带强队伍 · 规模化交付</h3>
+        <ul>
+          <li>从 4 人团队向 6-8 人团队进阶</li>
+          <li>培养 1-2 名 Staff 独立带项目能力</li>
+          <li>优化多项目并行的资源调配模型</li>
+          <li>深化 AI 应用，推广 2-3 个自动化脚本</li>
+        </ul>
+      </div>
+      <div class="pillar-card">
+        <div class="num">03</div>
+        <h3>业务拓展 · 研发突破</h3>
+        <ul>
+          <li>已上线科目承接量增加 50%</li>
+          <li>主动参与 2-3 个全新科目研发</li>
+          <li>从"参与者"向"负责人"角色转变</li>
+          <li>争取独立主导一个新科目的 SOP 编制</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
+<footer>
+  <div class="container">
+    <div class="sign">化繁为简 · 体系思维 · 技术驱动</div>
+    <p>不仅把手头的活做好，更带着团队一起把路走宽。</p>
+    <p style="margin-top:8px;">Taffy Tian · EY CSDC Zhengzhou · 2026.05</p>
+  </div>
+</footer>
+
+</body>
+</html>
