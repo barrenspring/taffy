@@ -60,6 +60,7 @@ nav .links a {
   letter-spacing: .02em;
 }
 nav .links a:hover { color: var(--gold); }
+nav .links a.active { color: var(--gold); font-weight: 500; }
 
 /* ===== 通用容器 ===== */
 .container {
@@ -103,10 +104,10 @@ h2 {
 }
 h3 {
   font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 700;
   color: var(--text);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .gold { color: var(--gold); }
 
@@ -137,8 +138,11 @@ h3 {
   margin: 40px 0;
 }
 .kpi-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(30,30,30,.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
   padding: 28px 24px;
   transition: border-color .3s;
 }
@@ -156,8 +160,11 @@ h3 {
 
 /* ===== 故事卡片 ===== */
 .story-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(30,30,30,.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
   padding: 40px;
   margin-bottom: 32px;
   transition: border-color .3s;
@@ -195,8 +202,11 @@ h3 {
   margin: 32px 0;
 }
 .pillar-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(30,30,30,.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
   padding: 32px 28px;
   transition: border-color .3s;
 }
@@ -207,7 +217,7 @@ h3 {
   color: var(--gold);
   line-height: 1;
   margin-bottom: 16px;
-  opacity: .4;
+  opacity: 1;
 }
 .pillar-card h3 { margin-bottom: 12px; }
 .pillar-card ul {
@@ -274,24 +284,13 @@ footer .sign {
   outline-offset: 4px;
   background: rgba(212,184,99,.03);
 }
-.edit-hint {
-  position: fixed;
-  bottom: 20px; right: 20px;
-  background: var(--gold);
-  color: #0a0a0a;
-  padding: 10px 18px;
-  font-size: 13px;
-  font-weight: 500;
-  z-index: 200;
-  opacity: .85;
-  pointer-events: none;
-}
+
 </style>
 </head>
 <body>
 
 <!-- ===== 导航栏 ===== -->
-<div class="edit-hint">✏️ 点击任意文字即可编辑</div>
+
 <nav>
   <div class="nav-inner">
     <span class="brand" contenteditable="true">TAFFY TIAN · FY26</span>
@@ -467,6 +466,31 @@ footer .sign {
     <p style="margin-top:8px;" contenteditable="true">Taffy Tian · EY CSDC Zhengzhou · 2026.05</p>
   </div>
 </footer>
+
+<script>
+// 滚动时高亮对应导航项
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav .links a');
+
+function updateActiveNav() {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 120;
+    if (window.scrollY >= top) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+window.addEventListener('load', updateActiveNav);
+</script>
 
 </body>
 </html>
