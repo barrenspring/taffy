@@ -50,7 +50,8 @@ nav {
   border-bottom: 1px solid rgba(212,184,99,.12);
 }
 nav .nav-inner {
-  max-width: 1080px; margin:0 auto; height:100%;
+  /* 导航栏宽度还原为 1200px（正文内容仍保持 1080px） */
+  max-width: 1200px; margin:0 auto; height:100%;
   padding: 0 32px;
   display: flex; justify-content: space-between; align-items: center;
 }
@@ -139,8 +140,8 @@ nav .links a.active::after {
 /* ===== 标题体系 ===== */
 .section-label {
   font-family: var(--sans);
-  font-size: 16px; font-weight: 600;
-  letter-spacing: .2em;
+  font-size: 19px; font-weight: 600;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 18px;
@@ -251,32 +252,30 @@ h3 {
   line-height: 2;
 }
 
-/* ===== DM 看板页：四张截图 2×2（更紧凑、图更大、整页不滚动） ===== */
-/* 该页内容主要是图片，容器放宽以便图片更大更清晰 */
-#dm .container { max-width: min(1680px, 94vw); }
+/* ===== DM 看板页：四张截图 2×2（与其它页等宽 1080px，边框更薄、图更大、整屏不滚动） ===== */
 .dm-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 18px;
 }
 .dm-item {
-  background: rgba(30,30,30,.55);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 12px;
-  padding: 10px;
-  transition: border-color .3s, transform .3s;
+  background: transparent;       /* 去掉厚重卡片底，让图片本身更突出 */
+  border: none;
+  border-radius: 8px;
+  padding: 0;                    /* 边框/留白收到最小，图片占满格子更大 */
+  transition: transform .3s;
 }
-.dm-item:hover { border-color: var(--gold-border); transform: translateY(-3px); }
+.dm-item:hover { transform: translateY(-3px); }
 .dm-item img {
   display: block;
   width: 100%;
   height: auto;
   /* 用 calc 扣除导航/标题/说明等固定高度后平分给两行，保证四张图整屏不滚动 */
-  max-height: calc((100vh - 410px) / 2);
+  max-height: calc((100vh - 380px) / 2);
   object-fit: contain;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.10);   /* 仅保留一条细边，不再有粗边框 */
   cursor: zoom-in;            /* 点击放大 */
 }
 .dm-cap {
