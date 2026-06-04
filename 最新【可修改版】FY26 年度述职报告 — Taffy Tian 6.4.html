@@ -50,13 +50,13 @@ nav {
   border-bottom: 1px solid rgba(212,184,99,.12);
 }
 nav .nav-inner {
-  max-width: 1200px; margin:0 auto; height:100%;
+  max-width: 1080px; margin:0 auto; height:100%;
   padding: 0 32px;
   display: flex; justify-content: space-between; align-items: center;
 }
 nav .brand {
   font-family: var(--serif);
-  font-size: 17px; font-weight: 600;
+  font-size: 19px; font-weight: 600;
   color: var(--gold);
   letter-spacing: .05em;
 }
@@ -68,7 +68,7 @@ nav .nav-right-zone {
 }
 nav .links { display:flex; gap:32px; }
 nav .links a {
-  font-size: 16px; font-weight: 400;
+  font-size: 18px; font-weight: 400;
   color: var(--text-muted);
   text-decoration: none;
   transition: color .25s;
@@ -128,9 +128,9 @@ nav .links a.active::after {
 }
 .slide--center { text-align: left; }
 
-/* ===== 通用容器 ===== */
+/* ===== 通用容器（第 2-8 页正文宽度收窄至 1080px，更聚焦易读） ===== */
 .container {
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 32px;
   width: 100%;
@@ -139,11 +139,11 @@ nav .links a.active::after {
 /* ===== 标题体系 ===== */
 .section-label {
   font-family: var(--sans);
-  font-size: 13px; font-weight: 500;
-  letter-spacing: .25em;
+  font-size: 16px; font-weight: 600;
+  letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 h1 {
   font-family: var(--serif);
@@ -173,15 +173,17 @@ h3 {
 }
 .gold { color: var(--gold); }
 
-/* ===== 封面 ===== */
+/* ===== 封面（居中布局） ===== */
+#cover .container { text-align: center; }
 #cover .subtitle {
   font-size: 18px;
   color: var(--text-muted);
   max-width: 600px;
-  margin-bottom: 40px;
+  margin: 0 auto 40px;
 }
 #cover .meta-info {
   display: flex; gap: 32px; flex-wrap: wrap;
+  justify-content: center;
   font-size: 13px; color: var(--text-dim);
 }
 #cover .meta-info span { display:flex; align-items:center; gap:6px; }
@@ -249,18 +251,20 @@ h3 {
   line-height: 2;
 }
 
-/* ===== DM 看板页：四张截图 2×2 ===== */
+/* ===== DM 看板页：四张截图 2×2（更紧凑、图更大、整页不滚动） ===== */
+/* 该页内容主要是图片，容器放宽以便图片更大更清晰 */
+#dm .container { max-width: min(1680px, 94vw); }
 .dm-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 22px;
-  margin-top: 28px;
+  gap: 14px;
+  margin-top: 20px;
 }
 .dm-item {
   background: rgba(30,30,30,.55);
   border: 1px solid rgba(255,255,255,.08);
   border-radius: 12px;
-  padding: 12px;
+  padding: 10px;
   transition: border-color .3s, transform .3s;
 }
 .dm-item:hover { border-color: var(--gold-border); transform: translateY(-3px); }
@@ -268,20 +272,48 @@ h3 {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 27vh;
+  /* 用 calc 扣除导航/标题/说明等固定高度后平分给两行，保证四张图整屏不滚动 */
+  max-height: calc((100vh - 410px) / 2);
   object-fit: contain;
   border-radius: 6px;
   border: 1px solid rgba(255,255,255,.06);
+  cursor: zoom-in;            /* 点击放大 */
 }
 .dm-cap {
   display: flex; align-items: baseline; gap: 8px;
-  margin-top: 10px; padding: 0 4px;
+  margin-top: 8px; padding: 0 4px;
 }
 .dm-cap .dm-no {
   font-family: var(--serif); font-weight: 700;
   color: var(--gold); font-size: 15px;
 }
 .dm-cap .dm-txt { font-size: 13px; color: var(--text-muted); }
+
+/* ===== 图片点击放大灯箱 ===== */
+.lightbox {
+  position: fixed; inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center; justify-content: center;
+  background: rgba(0,0,0,.9);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: zoom-out;
+  padding: 3vh 3vw;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 96vw;
+  max-height: 94vh;
+  border-radius: 8px;
+  border: 1px solid var(--gold-border);
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+}
+.lightbox .lb-hint {
+  position: fixed; bottom: 24px; left: 0; right: 0;
+  text-align: center; color: var(--text-dim); font-size: 13px;
+  letter-spacing: .05em; pointer-events: none;
+}
 
 /* ===== 三列布局 ===== */
 .grid-3 {
@@ -517,7 +549,6 @@ function exportStaticHTML() {
     <div class="container">
       <div class="section-label reveal" contenteditable="true">02 — 化繁为简</div>
       <h2 class="reveal" contenteditable="true">三个核心故事</h2>
-      <p class="reveal" style="color:var(--text-muted);max-width:760px;margin-bottom:24px;" contenteditable="true">经理 Ryan 对我的评价是“能把复杂问题做简单”。<span style="color: var(--text-muted);">以下三个真实业务场景，展示了我是如何将这种能力系统化运用的。</span></p>
 
       <div class="story-card reveal">
         <span class="tag" contenteditable="true">管理创新 · 其一</span>
@@ -675,6 +706,12 @@ function exportStaticHTML() {
 <!-- ===== 右侧进度标识 ===== -->
 <div class="progress" id="progress" aria-label="阅读进度"></div>
 
+<!-- ===== 图片放大灯箱（点击图片放大，再次点击还原） ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <img id="lightbox-img" src="" alt="DM 看板放大预览">
+  <div class="lb-hint">点击任意处关闭</div>
+</div>
+
 <script>
 (function () {
   const deck = document.getElementById('deck');
@@ -728,8 +765,35 @@ function exportStaticHTML() {
     });
   });
 
+  // ===== 图片点击放大 / 还原（灯箱） =====
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  function openLightbox(src) {
+    lightboxImg.setAttribute('src', src);
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.setAttribute('src', '');
+  }
+
+  // 点击任意 DM 图片放大
+  Array.prototype.slice.call(document.querySelectorAll('.dm-item img')).forEach(function (img) {
+    img.addEventListener('click', function () { openLightbox(img.getAttribute('src')); });
+  });
+  // 再次点击（灯箱任意处）还原
+  lightbox.addEventListener('click', closeLightbox);
+
   // 键盘上下翻页（编辑文字时不拦截，避免影响 contenteditable）
   window.addEventListener('keydown', function (e) {
+    // 灯箱打开时：Esc 关闭，并屏蔽翻页
+    if (lightbox.classList.contains('open')) {
+      if (e.key === 'Escape') closeLightbox();
+      return;
+    }
     const ae = document.activeElement;
     if (ae && (ae.isContentEditable || ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA')) return;
     if (e.key === 'ArrowDown' || e.key === 'PageDown') {
