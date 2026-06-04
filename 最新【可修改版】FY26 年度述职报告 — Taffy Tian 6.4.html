@@ -252,41 +252,42 @@ h3 {
   line-height: 2;
 }
 
-/* ===== DM 看板页：四张截图 2×2（与其它页等宽 1080px，边框更薄、图更大、整屏不滚动） ===== */
+/* ===== DM 看板页：四张截图 2×2（紧凑排布，贴合 DM 看板原版幻灯片样式） ===== */
 .dm-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 18px;
+  gap: 8px 10px;            /* 行间距更紧凑，四张图贴得更近 */
+  margin-top: 12px;
 }
 .dm-item {
-  background: transparent;       /* 去掉厚重卡片底，让图片本身更突出 */
+  background: transparent;
   border: none;
   border-radius: 8px;
-  padding: 0;                    /* 边框/留白收到最小，图片占满格子更大 */
+  padding: 0;
   transition: transform .3s;
 }
-.dm-item:hover { transform: translateY(-3px); }
+.dm-item:hover { transform: translateY(-2px); }
 .dm-item img {
   display: block;
   width: 100%;
   height: auto;
   /* 用 calc 扣除导航/标题/说明等固定高度后平分给两行，保证四张图整屏不滚动 */
-  max-height: calc((100vh - 380px) / 2);
+  max-height: calc((100vh - 360px) / 2);
   object-fit: contain;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,.10);   /* 仅保留一条细边，不再有粗边框 */
+  border: 1px solid rgba(255,255,255,.10);   /* 仅保留一条细边 */
   cursor: zoom-in;            /* 点击放大 */
 }
 .dm-cap {
-  display: flex; align-items: baseline; gap: 8px;
-  margin-top: 8px; padding: 0 4px;
+  display: flex; align-items: baseline; gap: 6px;
+  margin-top: 5px; padding: 0 2px;          /* 说明文字紧贴图片，行高更紧凑 */
+  line-height: 1.4;
 }
 .dm-cap .dm-no {
   font-family: var(--serif); font-weight: 700;
-  color: var(--gold); font-size: 15px;
+  color: var(--gold); font-size: 14px;
 }
-.dm-cap .dm-txt { font-size: 13px; color: var(--text-muted); }
+.dm-cap .dm-txt { font-size: 12.5px; color: var(--text-muted); }
 
 /* ===== 图片点击放大灯箱 ===== */
 .lightbox {
