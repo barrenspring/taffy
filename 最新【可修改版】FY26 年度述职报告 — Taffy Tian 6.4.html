@@ -252,13 +252,11 @@ h3 {
   line-height: 2;
 }
 
-/* ===== DM 看板页：四张截图 2×2（去掉大标题后图片放大、行列更紧凑） ===== */
-/* 该页以图片为主，放宽容器让四张图更大、展示更清晰 */
-#dm .container { max-width: min(1600px, 95vw); }
+/* ===== DM 看板页：四张截图 2×2（与其它页等宽 1080px、列间距更小、图片无边框） ===== */
 .dm-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;                 /* 行列间距更小，四张图贴得更近 */
+  gap: 8px 4px;             /* 行间距 8px，列间距收到 4px（更小） */
   margin-top: 12px;
 }
 .dm-item {
@@ -277,7 +275,7 @@ h3 {
   max-height: calc((100vh - 250px) / 2);
   object-fit: contain;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,.10);   /* 仅保留一条细边 */
+  border: none;              /* 图片外部不再加框 */
   cursor: zoom-in;            /* 点击放大 */
 }
 .dm-cap {
@@ -378,11 +376,11 @@ h3 {
   color: var(--gold);
   margin-bottom: 18px;
 }
-.closing-inner p { color: var(--text-muted); margin-bottom: 8px; }
+.closing-inner p { color: var(--text-muted); margin-bottom: 8px; font-size: 20px; }
 .closing-inner .ey {
   margin-top: 24px;
   color: var(--text-muted);
-  font-size: 22px;            /* 「聚信心 塑未来」一行加大强调 */
+  font-size: 22px;            /* 比上一行略大 */
   letter-spacing: .04em;
 }
 /* 结语页：标题轻微「呼吸」光晕动画，进场后持续（不花哨） */
@@ -709,7 +707,7 @@ function exportStaticHTML() {
       <div class="closing-inner">
         <div class="sign reveal" contenteditable="true">化繁为简 · 体系思维 · 技术驱动</div>
         <p class="reveal" contenteditable="true">不仅把手头的活做好，更带着团队一起把路走宽。</p>
-        <p class="ey reveal" contenteditable="true">EY· Shape the future with confidence·&nbsp;聚信心 塑未来</p>
+        <p class="ey reveal" contenteditable="true">EY· Shape the future with confidence·&nbsp;<span class="gold">聚信心 塑未来</span></p>
       </div>
     </div>
   </section>
